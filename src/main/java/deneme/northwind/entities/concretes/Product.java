@@ -19,8 +19,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "category_id")
-    private int categoryId;
+    //@Column(name = "category_id")
+    //private int categoryId;
+    // aşağıda joincolumn yaptığımız için gerek kalmadı
 
     @Column(name = "product_name")
     private String productName;
@@ -33,5 +34,9 @@ public class Product {
 
     @Column(name = "quantity_per_unit")
     private String quantityPerUnit;
+
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 }
