@@ -1,6 +1,8 @@
 package deneme.northwind.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -8,11 +10,13 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "products")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
     @Column(name = "product_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "category_id")

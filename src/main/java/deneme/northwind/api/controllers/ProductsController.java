@@ -2,6 +2,8 @@ package deneme.northwind.api.controllers;
 
 
 import deneme.northwind.business.abstracts.ProductService;
+import deneme.northwind.core.utilities.results.DataResult;
+import deneme.northwind.core.utilities.results.Result;
 import deneme.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,13 @@ public class ProductsController {
     }
 
     @GetMapping("/getAll")
-    public List<Product> getAll() {
+    public DataResult<List<Product>> getAll() {
         return productService.getAll();
+    }
+
+    @PostMapping("/add")
+    public Result add(@RequestBody Product product) {
+        return this.productService.add(product);
     }
 
 
