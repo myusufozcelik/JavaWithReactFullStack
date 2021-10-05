@@ -1,6 +1,7 @@
 package deneme.northwind.dataAccess.abstracts;
 
 import deneme.northwind.entities.concretes.Product;
+import deneme.northwind.entities.dtos.ProductWithCategoryDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -23,6 +24,12 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     // biz yazarsak;
     @Query("From Product where productName=:productName and category.categoryId=:categoryId")
     List<Product> getByNameAndCategory(String productName, int categoryId);
+
+    // constructora göre query yazılır
+    @Query("Select new deneme.northwind.entities.dtos.ProductWithCategoryDto(p.id, p.productName, c.categoryName) from Category c Inner Join c.products p")
+    List<ProductWithCategoryDto> getProductWithCategoryDetails();
+
+    // select p.productId, p.productName, c.categoryName  category c inner join product p on c.categoryId = p.categoryId
 
 
 }

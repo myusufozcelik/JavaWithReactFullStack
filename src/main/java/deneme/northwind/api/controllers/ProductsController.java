@@ -5,6 +5,7 @@ import deneme.northwind.business.abstracts.ProductService;
 import deneme.northwind.core.utilities.results.DataResult;
 import deneme.northwind.core.utilities.results.Result;
 import deneme.northwind.entities.concretes.Product;
+import deneme.northwind.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,11 +69,14 @@ public class ProductsController {
         return productService.getAllSorted();
     }
 
+    @GetMapping("/getProductWithCategoryDetails")
+    public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+        return productService.getProductWithCategoryDetails();
+    }
 
     @PostMapping("/add")
     public Result add(@RequestBody Product product) {
         return this.productService.add(product);
     }
-
 
 }
